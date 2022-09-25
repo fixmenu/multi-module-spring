@@ -6,6 +6,7 @@
 
     <groupId>org.mertgnksn</groupId>
     <artifactId>multi-module-spring.parent</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,4 +14,39 @@
         <maven.compiler.target>19</maven.compiler.target>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Bring in spring and spring boot dependency versions. This saves us from having to specify versions all
+                 over in our poms and keeps us on consistent versions throughout.  -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.6.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+                <version>1.18.22</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mertgnksn.models</groupId>
+                <artifactId>multi-module-spring.models</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>models</module>
+    </modules>
 </project>
